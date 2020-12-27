@@ -1,8 +1,8 @@
 from appium.webdriver.common.mobileby import MobileBy
-from view.base_view import BaseView
+from page.base_page import BasePage
 
 
-class GoOutClockIn(BaseView):
+class GoOutClockInPage(BasePage):
     """
     外出打卡页面
     """

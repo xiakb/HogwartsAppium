@@ -1,10 +1,12 @@
+from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from common.common_fun import *
 
 
-class BaseView(object):
-    def __init__(self, driver=None):
+class BasePage(object):
+    def __init__(self, driver: WebDriver = None):
         """
         初始化driver
         :param driver:
@@ -12,7 +14,7 @@ class BaseView(object):
         if driver is None:
             self.driver = desired_cap()
         else:
-            self.driver = driver
+            self.driver.launch_app()
         self.driver.implicitly_wait(8)
 
     def find_element(self, *loc):
@@ -31,13 +33,32 @@ class BaseView(object):
         """
         return self.driver.find_elements(*loc)
 
-    def wait_click(self, locator):
+    def scroll_find(self, text):
+        """
+        根据text属性值滚动查找元素
+        :param text: 需要查找元素的text属性值
+        :return: 查找到的元素
+        """
+        scroll = (MobileBy.ANDROID_UIAUTOMATOR, "new UiScrollable(new UiSelector()."
+                                                "scrollable(true)."
+                                                "instance(0))."
+                                                "scrollIntoView(new UiSelector()."
+                                                f"text({text}).instance(0));")
+        return self.find_element(*scroll)
+
+    def display_wait(self, locator):
         """
         显示等待
         :param locator: 需要等待的元素
         :return:
         """
         return WebDriverWait(self.driver, 9).until(expected_conditions.element_to_be_clickable(locator))
+
+    def wait_for(self, *loc):
+        def wait_ele_for():
+            eles = self.find_elements(*loc)
+            return len(eles) > 0
+        WebDriverWait(self.driver, 10).until(wait_ele_for)
 
     def get_window_size(self):
         """
@@ -57,6 +78,14 @@ class BaseView(object):
         :return:
         """
         return self.driver.swipe(start_x, start_y, end_x, end_y, duration)
+
+    def swipe_find(self, *loc, start_x, start_y, end_x, end_y, duration):
+        self.driver.implicitly_wait(2)
+        elements = self.find_elements(*loc)
+        while len(elements) == 0:
+            self.swipe(start_x, start_y, end_x, end_y, duration)
+            elements = self.find_elements(*loc)
+        return elements[0]
 
     def close_app(self):
         """
