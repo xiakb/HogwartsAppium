@@ -8,6 +8,7 @@ unicodeKeyboard: True
 resetKeyboard: True
 dontStopAppOnReset: True
 settings[waitForIdleTimeout]: 0
+newCommandTimeout: 300
 
 appPackage: com.tencent.wework
 appActivity: com.tencent.wework.launch.LaunchSplashActivity

@@ -32,7 +32,8 @@ def desired_cap():
         'dontStopAppOnReset': data['dontStopAppOnReset'],
         'settings[waitForIdleTimeout]': data['settings[waitForIdleTimeout]'],
         'appPackage': data['appPackage'],
-        'appActivity': data['appActivity']
+        'appActivity': data['appActivity'],
+        'newCommandTimeout': data['newCommandTimeout']
     }
 
     driver = webdriver.Remote('http://'+str(data['ip'])+':'+str(data['port'])+'/wd/hub', desired_caps)
