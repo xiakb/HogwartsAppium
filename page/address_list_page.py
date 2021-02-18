@@ -1,9 +1,9 @@
 from appium.webdriver.common.mobileby import MobileBy
 from page.add_member_page import AddMemberPage
-from page.base_page import BasePage
+from page.pre_page import PrePage
 
 
-class AddressListPage(BasePage):
+class AddressListPage(PrePage):
     """
     通讯录页面
     """
@@ -18,7 +18,7 @@ class AddressListPage(BasePage):
         """
         # self.find_element(*self._add_mem).click()
         self.scroll_find("添加成员").click()
-        return AddMemberPage(self.driver)
+        return AddMemberPage(self.base_page)
 
     def get_member(self):
         """

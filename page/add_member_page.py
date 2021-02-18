@@ -1,8 +1,8 @@
 from appium.webdriver.common.mobileby import MobileBy
-from page.base_page import BasePage
+from page.pre_page import PrePage
 
 
-class AddMemberPage(BasePage):
+class AddMemberPage(PrePage):
     """
     添加成员页面
     """
@@ -15,7 +15,7 @@ class AddMemberPage(BasePage):
         :return: 手动添加页面
         """
         self.find_element(*self._manually_add).click()
-        return ManuallyAddPage(self.driver)
+        return ManuallyAddPage(self.base_page)
 
     def goto_address_list_page(self):
         """
@@ -24,10 +24,10 @@ class AddMemberPage(BasePage):
         """
         from page.address_list_page import AddressListPage
         self.find_element(*self._address_list).click()
-        return AddressListPage(self.driver)
+        return AddressListPage(self.base_page)
 
 
-class ManuallyAddPage(BasePage):
+class ManuallyAddPage(PrePage):
     """
     手动添加成员页面
     """
@@ -90,7 +90,7 @@ class ManuallyAddPage(BasePage):
         self.select_male()
         self.type_phone_number(phone)
         self.click_save()
-        return AddMemberPage(self.driver)
+        return AddMemberPage(self.base_page)
 
     def add_female_member(self, username, phone):
         """
@@ -103,5 +103,5 @@ class ManuallyAddPage(BasePage):
         self.select_female()
         self.type_phone_number(phone)
         self.click_save()
-        return AddMemberPage(self.driver)
+        return AddMemberPage(self.base_page)
 

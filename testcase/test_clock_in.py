@@ -1,9 +1,11 @@
+from page.base_page import BasePage
 from page.information_page import InformationPage
 
 
 class TestClockIn:
     def setup_class(self):
-        self.information = InformationPage()
+        base_page = BasePage()
+        self.information = InformationPage(base_page)
 
     def teardown_class(self):
         self.information.close_app()

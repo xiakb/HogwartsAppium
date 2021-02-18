@@ -1,16 +1,17 @@
 from appium.webdriver.common.mobileby import MobileBy
 from page.address_list_page import AddressListPage
-from page.base_page import BasePage
+from page.pre_page import PrePage
 from page.workbench_page import WorkbenchPage
 
 
-class InformationPage(BasePage):
+class InformationPage(PrePage):
     """
     消息页面
     """
-    _workbench = (MobileBy.XPATH, "//*[@text='工作台' and @resource-id='com.tencent.wework:id/egd']")
-    _address = (MobileBy.XPATH, "//*[@text='通讯录' and @resource-id='com.tencent.wework:id/egd']")
-    _information = (MobileBy.XPATH, "//*[@text='消息' and @resource-id='com.tencent.wework:id/egd']")
+    _workbench = (MobileBy.XPATH, "//*[@text='工作台' and @resource-id='com.tencent.wework:id/en5']")
+    # _workbench = (MobileBy.XPATH, "//*[@text='工作台']")
+    _address = (MobileBy.XPATH, "//*[@text='通讯录' and @resource-id='com.tencent.wework:id/en5']")
+    _information = (MobileBy.XPATH, "//*[@text='消息' and @resource-id='com.tencent.wework:id/en5']")
 
     def goto_workbench_page(self):
         """
@@ -18,7 +19,7 @@ class InformationPage(BasePage):
         :return: 工作台页面
         """
         self.find_element(*self._workbench).click()
-        return WorkbenchPage(self.driver)
+        return WorkbenchPage(self.base_page)
 
     def goto_address_list_page(self):
         """
@@ -26,7 +27,7 @@ class InformationPage(BasePage):
         :return: 通讯录页面
         """
         self.find_element(*self._address).click()
-        return AddressListPage(self.driver)
+        return AddressListPage(self.base_page)
 
     def back_information(self):
         """

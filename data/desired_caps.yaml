@@ -1,7 +1,10 @@
 platformName: Android
-# 模拟器
-platformVersion: 5.1.1
-deviceName: 127.0.0.1:62001
+# 夜神模拟器
+# platformVersion: 5.1.1
+# deviceName: 127.0.0.1:62001
+# mumu模拟器
+platformVersion: 6.0.1
+deviceName: 127.0.0.1:7555
 
 noReset: True
 unicodeKeyboard: True

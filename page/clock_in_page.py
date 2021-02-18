@@ -1,9 +1,9 @@
 from appium.webdriver.common.mobileby import MobileBy
-from page.base_page import BasePage
 from page.go_out_clock_in_page import GoOutClockInPage
+from page.pre_page import PrePage
 
 
-class ClockInPage(BasePage):
+class ClockInPage(PrePage):
     """
     打卡页面
     """
@@ -15,5 +15,5 @@ class ClockInPage(BasePage):
         :return: 外出打卡页面
         """
         self.find_element(*self._go_out_clock_in).click()
-        return GoOutClockInPage(self.driver)
+        return GoOutClockInPage(self.base_page)
 

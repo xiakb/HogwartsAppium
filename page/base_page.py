@@ -6,15 +6,11 @@ from common.common_fun import *
 
 
 class BasePage(object):
-    def __init__(self, driver: WebDriver = None):
+    def __init__(self):
         """
         初始化driver
-        :param driver:
         """
-        if driver is None:
-            self.driver = desired_cap()
-        else:
-            self.driver.launch_app()
+        self.driver = desired_cap()
         self.driver.implicitly_wait(8)
 
     def find_element(self, *loc):
@@ -55,6 +51,11 @@ class BasePage(object):
         return WebDriverWait(self.driver, 9).until(expected_conditions.element_to_be_clickable(locator))
 
     def wait_for(self, *loc):
+        """
+        显示等待
+        :param loc: 需要等待的元素
+        :return:
+        """
         def wait_ele_for():
             eles = self.find_elements(*loc)
             return len(eles) > 0
@@ -79,7 +80,37 @@ class BasePage(object):
         """
         return self.driver.swipe(start_x, start_y, end_x, end_y, duration)
 
-    def swipe_find(self, *loc, start_x, start_y, end_x, end_y, duration):
+    def swipe_up(self, start_x, start_y, end_x, end_y, duration, *loc):
+        """
+        滑动查找元素
+        :param start_x: 起始x坐标
+        :param start_y: 起始y坐标
+        :param end_x: 结束x坐标
+        :param end_y: 结束y坐标
+        :param duration: 等待时间
+        :param loc: 查找的元素
+        :return:
+        """
+        i = 0
+        while i < 10:
+            try:
+                self.find_element(*loc).click()
+                break
+            except Exception as e:
+                self.swipe(start_x, start_y, end_x, end_y, duration)
+                i = i + 1
+
+    def swipe_find(self, start_x, start_y, end_x, end_y, duration, *loc):
+        """
+        滑动查找元素
+        :param start_x: 起始x坐标
+        :param start_y: 起始y坐标
+        :param end_x: 结束x坐标
+        :param end_y: 结束y坐标
+        :param duration: 等待时间
+        :param loc: 查找的元素
+        :return: 查找到的元素
+        """
         self.driver.implicitly_wait(2)
         elements = self.find_elements(*loc)
         while len(elements) == 0:
