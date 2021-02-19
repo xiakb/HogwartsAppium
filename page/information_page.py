@@ -9,7 +9,6 @@ class InformationPage(PrePage):
     消息页面
     """
     _workbench = (MobileBy.XPATH, "//*[@text='工作台' and @resource-id='com.tencent.wework:id/en5']")
-    # _workbench = (MobileBy.XPATH, "//*[@text='工作台']")
     _address = (MobileBy.XPATH, "//*[@text='通讯录' and @resource-id='com.tencent.wework:id/en5']")
     _information = (MobileBy.XPATH, "//*[@text='消息' and @resource-id='com.tencent.wework:id/en5']")
 

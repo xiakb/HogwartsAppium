@@ -42,13 +42,39 @@ class BasePage(object):
                                                 f"text({text}).instance(0));")
         return self.find_element(*scroll)
 
-    def display_wait(self, locator):
+    def visible_and_clickable(self, *loc):
         """
-        显示等待
-        :param locator: 需要等待的元素
+        显示等待，判断某个元素是否可见并且是可以点击的
+        :param loc: 需要等待的元素
         :return:
         """
-        return WebDriverWait(self.driver, 9).until(expected_conditions.element_to_be_clickable(locator))
+        return WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(*loc))
+
+    def whether_visible(self, *loc):
+        """
+        显示等待，判断元素是否可见
+        :param loc: 需要等待的元素
+        :return:
+        """
+        return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(*loc))
+
+    def displayed_and_click(self, *loc):
+        """
+        显示等待 \n
+        判断元素是否可见，并点击该元素 \n
+        :param loc: 需要等待的元素
+        :return:
+        """
+        for i in range(10):
+            try:
+                element = self.find_element(*loc)
+                if element.is_displayed():
+                    element.click()
+                    break
+            except:
+                pass
+        else:
+            pass
 
     def wait_for(self, *loc):
         """
