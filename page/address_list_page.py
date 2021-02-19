@@ -9,15 +9,18 @@ class AddressListPage(PrePage):
     """
     _add_mem = (MobileBy.XPATH, "//*[@text='添加成员']")
     _member_information = (MobileBy.XPATH,
-                           "//*[@resource-id='com.tencent.wework:id/egr']//*[@class='android.widget.TextView']")
+                           "//*[@resource-id='com.tencent.wework:id/bdf']//*[@class='android.widget.TextView']")
 
     def goto_add_member_page(self):
         """
         跳转到添加成员页面
         :return: 添加成员页面
         """
-        # self.find_element(*self._add_mem).click()
-        self.scroll_find("添加成员").click()
+        s = self.get_window_size()
+        x = s['width'] * 0.5
+        y1 = s['height'] * 0.75
+        y2 = s['height'] * 0.25
+        self.swipe_up(x, y1, x, y2, 1000, *self._add_mem)
         return AddMemberPage(self.base_page)
 
     def get_member(self):

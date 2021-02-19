@@ -78,11 +78,11 @@ class BasePage(object):
 
     def wait_for(self, *loc):
         """
-        显示等待
+        显示等待，性别弹窗
         :param loc: 需要等待的元素
         :return:
         """
-        def wait_ele_for():
+        def wait_ele_for(driver: WebDriver):
             eles = self.find_elements(*loc)
             return len(eles) > 0
         WebDriverWait(self.driver, 10).until(wait_ele_for)
