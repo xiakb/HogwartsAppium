@@ -7,11 +7,12 @@ platformVersion: 6.0.1
 deviceName: 127.0.0.1:7555
 
 noReset: True
-unicodeKeyboard: True
-resetKeyboard: True
-dontStopAppOnReset: True
-settings[waitForIdleTimeout]: 0
-newCommandTimeout: 300
+# unicodeKeyboard: True
+# resetKeyboard: True
+dontStopAppOnReset: True  # 在使用 adb 启动应用之前，不要终止被测应用的进程
+settings[waitForIdleTimeout]: 0  # 页面空闲状态等待时间
+# newCommandTimeout: 300
+ensureWebviewsHavePages: True  # 动态刷新
 
 appPackage: com.tencent.wework
 appActivity: com.tencent.wework.launch.LaunchSplashActivity

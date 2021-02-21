@@ -27,13 +27,14 @@ def desired_cap():
         'platformVersion': data['platformVersion'],
         'deviceName': data['deviceName'],
         'noReset': data['noReset'],
-        'unicodeKeyboard': data['unicodeKeyboard'],
-        'resetKeyboard': data['resetKeyboard'],
+        # 'unicodeKeyboard': data['unicodeKeyboard'],
+        # 'resetKeyboard': data['resetKeyboard'],
         'dontStopAppOnReset': data['dontStopAppOnReset'],
         'settings[waitForIdleTimeout]': data['settings[waitForIdleTimeout]'],
         'appPackage': data['appPackage'],
         'appActivity': data['appActivity'],
-        'newCommandTimeout': data['newCommandTimeout']
+        'ensureWebviewsHavePages': data['ensureWebviewsHavePages']
+        # 'newCommandTimeout': data['newCommandTimeout']
     }
 
     driver = webdriver.Remote('http://'+str(data['ip'])+':'+str(data['port'])+'/wd/hub', desired_caps)
