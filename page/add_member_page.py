@@ -15,7 +15,7 @@ class AddMemberPage(PrePage):
         跳转到手动添加页面
         :return: 手动添加页面
         """
-        self.find_element(*self._manually_add).click()
+        self.base_page.find(*self._manually_add).click()
         return ManuallyAddPage(self.base_page)
 
     def goto_address_list_page(self):
@@ -24,7 +24,7 @@ class AddMemberPage(PrePage):
         :return: 通讯录页面
         """
         from page.address_list_page import AddressListPage
-        self.find_element(*self._address_list).click()
+        self.base_page.find(*self._address_list).click()
         return AddressListPage(self.base_page)
 
 
@@ -45,26 +45,26 @@ class ManuallyAddPage(PrePage):
         :param username: 要输入的姓名
         :return:
         """
-        self.find_element(*self._username).clear()
-        self.find_element(*self._username).send_keys(username)
+        self.base_page.find(*self._username).clear()
+        self.base_page.find(*self._username).send_keys(username)
 
     def select_male(self):
         """
         性别选择男
         :return:
         """
-        self.find_element(*self._gender).click()
-        self.wait_for(*self._female)
-        self.find_element(*self._male).click()
+        self.base_page.find(*self._gender).click()
+        self.base_page.wait_for(*self._female)
+        self.base_page.find(*self._male).click()
 
     def select_female(self):
         """
         性别选择女
         :return:
         """
-        self.find_element(*self._gender).click()
-        self.wait_for(*self._female)
-        self.find_element(*self._female).click()
+        self.base_page.find(*self._gender).click()
+        self.base_page.wait_for(*self._female)
+        self.base_page.find(*self._female).click()
 
     def type_phone_number(self, phone):
         """
@@ -72,15 +72,15 @@ class ManuallyAddPage(PrePage):
         :param phone: 要输入的手机号
         :return:
         """
-        self.find_element(*self._phone_number).clear()
-        self.find_element(*self._phone_number).send_keys(phone)
+        self.base_page.find(*self._phone_number).clear()
+        self.base_page.find(*self._phone_number).send_keys(phone)
 
     def click_save(self):
         """
         点击保存
         :return:
         """
-        self.find_element(*self._save).click()
+        self.base_page.find(*self._save).click()
 
     def add_male_member(self, username, phone):
         """

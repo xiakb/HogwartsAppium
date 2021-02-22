@@ -1,7 +1,7 @@
 from page.base_page import BasePage
 
 
-class PrePage(BasePage):
+class PrePage:
     """driver对象"""
     def __init__(self, base_page: BasePage):
         """

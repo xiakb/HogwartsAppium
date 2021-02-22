@@ -14,6 +14,6 @@ class ClockInPage(PrePage):
         跳转到外出打卡页面
         :return: 外出打卡页面
         """
-        self.find_element(*self._go_out_clock_in).click()
+        self.base_page.find(*self._go_out_clock_in).click()
         return GoOutClockInPage(self.base_page)
 

@@ -17,7 +17,7 @@ class InformationPage(PrePage):
         跳转到工作台页面
         :return: 工作台页面
         """
-        self.find_element(*self._workbench).click()
+        self.base_page.find(*self._workbench).click()
         return WorkbenchPage(self.base_page)
 
     def goto_address_list_page(self):
@@ -25,7 +25,7 @@ class InformationPage(PrePage):
         跳转到通讯录页面
         :return: 通讯录页面
         """
-        self.find_element(*self._address).click()
+        self.base_page.find(*self._address).click()
         return AddressListPage(self.base_page)
 
     def back_information(self):
@@ -33,5 +33,5 @@ class InformationPage(PrePage):
         返回消息页面
         :return:
         """
-        self.find_element(*self._information).click()
+        self.base_page.find(*self._information).click()
 

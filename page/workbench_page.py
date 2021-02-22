@@ -14,10 +14,10 @@ class WorkbenchPage(PrePage):
         跳转到打卡页面
         :return: 打卡页面
         """
-        s = self.get_window_size()
+        s = self.base_page.get_window_size()
         x = s['width'] * 0.5
         y1 = s['height'] * 0.75
         y2 = s['height'] * 0.25
-        self.swipe_up(x, y1, x, y2, 1000, *self._punch_card)
+        self.base_page.swipe_up(x, y1, x, y2, 1000, *self._punch_card)
         return ClockInPage(self.base_page)
 

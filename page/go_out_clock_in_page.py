@@ -15,7 +15,7 @@ class GoOutClockInPage(PrePage):
         :return: 返回打开成功页面的源代码
         """
         # self.find_element(*self._go_out).click()
-        self.displayed_and_click(*self._go_out)
-        self.whether_visible(*self._Clock_in_success)
-        return self.driver.page_source
+        self.base_page.displayed_and_click(*self._go_out)
+        self.base_page.wait_for(*self._Clock_in_success)
+        return self.base_page.driver.page_source
 

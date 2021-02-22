@@ -1,5 +1,5 @@
+import time
 import yaml
-from appium import webdriver
 
 
 def get_data(filename):
@@ -15,31 +15,24 @@ def get_data(filename):
     return result
 
 
-def desired_cap():
+def get_time():
     """
-    启动对应APP
-    :return: driver
+    获取当前时间，并格式化输出 \n
+    :return: 当前时间
     """
-    data = get_data("desired_caps.yaml")
-    # 启动app参数
-    desired_caps = {
-        'platformName': data['platformName'],
-        'platformVersion': data['platformVersion'],
-        'deviceName': data['deviceName'],
-        'noReset': data['noReset'],
-        # 'unicodeKeyboard': data['unicodeKeyboard'],
-        # 'resetKeyboard': data['resetKeyboard'],
-        'dontStopAppOnReset': data['dontStopAppOnReset'],
-        'settings[waitForIdleTimeout]': data['settings[waitForIdleTimeout]'],
-        'appPackage': data['appPackage'],
-        'appActivity': data['appActivity'],
-        'ensureWebviewsHavePages': data['ensureWebviewsHavePages']
-        # 'newCommandTimeout': data['newCommandTimeout']
-    }
-
-    driver = webdriver.Remote('http://'+str(data['ip'])+':'+str(data['port'])+'/wd/hub', desired_caps)
-    return driver
+    now = time.strftime("%Y-%m-%d %H_%M_%S")
+    return now
 
 
-if __name__ == '__main__':
-    desired_cap()
+def get_picture_data(picture_path):
+    """
+    读取图片文件 \n
+    :param picture_path: 要读取的文件路径
+    :return: 读取的文件
+    """
+    with open(picture_path, 'rb') as file:
+        picture_data = file.read()
+    return picture_data
+
+
+
