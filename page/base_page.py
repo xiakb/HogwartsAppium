@@ -3,6 +3,8 @@ from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from common.black_handle import black_wrapper
+from common.black_list import BlackList
 from common.common_fun import *
 from common.desired_cap import desired_cap
 
@@ -13,8 +15,10 @@ class BasePage(object):
         初始化driver
         """
         self.driver = desired_cap()
+        self.black_list = BlackList.black_list()
         self.driver.implicitly_wait(8)
 
+    @black_wrapper
     def find(self, by, locator):
         """
         element定位器
