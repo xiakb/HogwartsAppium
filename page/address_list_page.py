@@ -1,6 +1,8 @@
 from appium.webdriver.common.mobileby import MobileBy
 from page.add_member_page import AddMemberPage
+from page.employee_information_page import EmployeeInformationPage
 from page.pre_page import PrePage
+import time
 
 
 class AddressListPage(PrePage):
@@ -28,7 +30,17 @@ class AddressListPage(PrePage):
         获取成员列表
         :return: 成员列表
         """
+        time.sleep(2)
         member_list = self.base_page.finds(*self._member_information)
         member_list_res = [i.text for i in member_list]
         return member_list_res
+
+    def goto_employee_information_page(self, username):
+        """
+        跳转到员工个人信息页
+        :return: 员工个人信息页
+        """
+        if username in self.get_member():
+            self.base_page.find(MobileBy.XPATH, f"//*[@text='{username}']").click()
+            return EmployeeInformationPage(self.base_page)
 

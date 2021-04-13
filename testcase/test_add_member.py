@@ -1,7 +1,9 @@
 from page.base_page import BasePage
 from page.information_page import InformationPage
+import allure
 
 
+@allure.feature("添加成员")
 class TestAddMember:
     def setup_class(self):
         base_page = BasePage()
@@ -13,6 +15,7 @@ class TestAddMember:
     def teardown(self):
         self.app.back_information()
 
+    @allure.story("添加男成员")
     def test_manual_add_male_member(self):
         """
         测试添加男成员
@@ -27,6 +30,7 @@ class TestAddMember:
             get_member()
         assert '木木1' in res
 
+    @allure.story("添加女成员")
     def test_manual_add_female_member(self):
         """
         测试添加女成员
